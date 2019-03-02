@@ -118,6 +118,47 @@ def calc_year_daytemps(wdates):
     return years
 
 
+    #
+     #TODO:
+def calc_year_minmax(wdates, wtemp):
+    """
+    Cast years to int variable. Append to list
+    :param years: List with year fields
+    :return: Decimal Years 
+    """
+    recordedmin = 0.0
+    yearmin = []
+    tempmin = []
+    yearPointer = int(wdates[0][0:4])
+    yearDict = {}
+
+    try:
+        i = 0
+        sizeOfList = len(wtemp)
+        while i < sizeOfList:
+            year = int(wdates[i][0:4])
+            years.append(year)
+            if wtemp[i] != 999.9:
+                if year in yearDict:
+                    yearDict[year].append(float(wtemp[i]))
+                else:
+                    yearDict[year] = []
+                    yearDict[year].append(float(wtemp[i]))
+            i += 1
+
+
+        for k, kv in yearDict:
+            yearmin.append(k)
+            tempmin.append(np.amin(kv))
+            print(yearmin)
+    except:
+        print('error calculating')
+        exit(0)
+
+    return yearmin, tempmin 
+    #
+
+
 def plot_data_task1(wyear, wtemp, month_mean, month_std):
     """
     Create plot for Task 1.
@@ -170,10 +211,12 @@ def main(infile):
     # Calculate mean and standard dev per month
     month_mean, month_std = calc_mean_std_dev(wdates, wtemperatures)
 
+    wyearmin, wtempmin = calc_year_minmax(wdates, wtemperatures)
+
     # TODO: Make sure you have a list of:
     #       1) years, 2) temperature, 3) month_mean, 4) month_std
     wyear = calc_year_daytemps(wdates)
-    plot_data_task1(wyear, wtemperatures, month_mean, month_std)
+    #plot_data_task1(wyear, wtemperatures, month_mean, month_std)
 
     # TODO: Create the data you need for this
     # plot_data_task2(xxx)
