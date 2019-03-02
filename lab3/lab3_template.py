@@ -29,8 +29,7 @@ import numpy as np
 #J       from all the remaining lines:
 #J       read in the date (index 2) and temperature (index 3)
 #       parse the date string into year, month, day
-#       convert year, month, day into decimal years for plotting (this would make a great function!)
-#       (need to pay attention to leap years here!)
+#       convert year, month, day into decimal years for plotting
 # 4) make two lists for the time series - the decimal year list and the temperature list
 # 5) sort the data by month so we can average it and take the standard deviation later
 # 6) Plot the results
@@ -63,7 +62,7 @@ def calc_mean_std_dev(wdates, wtemp):
     """
     Calculate the mean temperature per month
     Calculate the standard deviation per month's mean
-    :param wdates: dictionary with dates fields
+    :param wdates: list with dates fields
     :param wtemp: temperature per month
     :return: means, std_dev: months_mean and std_dev lists
     """
